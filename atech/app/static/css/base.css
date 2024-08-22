@@ -1,0 +1,363 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+}
+
+#advanced-search-btn,
+.cart-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #f84622;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Space between buttons */
+}
+
+#advanced-search-btn:hover,
+.cart-button:hover {
+    background-color: #cd2706;
+}
+
+/* Стили для логотипа */
+.logo h1 {
+    margin: 0;
+    font-size: 35px;
+    color: #333;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+/* Стили для поисковой формы */
+.search-box {
+    flex: 1;
+    margin: 0 20px;
+    padding-top: 15px;
+}
+
+.search-box form {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.search-box button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #f84622;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background-color: #cd2706;
+}
+
+.search-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #f84622;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #cd2706;
+}
+
+/* Стили для кнопки расширенного поиска */
+#advanced-search-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #f84622;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#advanced-search-btn:hover {
+    background-color: #cd2706;
+}
+
+/* Стили для блока расширенного поиска */
+#advanced-search {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+#advanced-search input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+/* Стили для списка продуктов с использованием CSS Grid */
+
+.product {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 300px; /* Заменить фиксированную высоту на минимальную */
+    box-sizing: border-box;
+    text-align: center;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: border-color 0.3s ease; /* Плавное изменение цвета рамки */
+}
+
+.product:hover {
+    border-color: rgb(130, 130, 130); /* Цвет рамки при наведении */
+}
+
+.product-image {
+    width: 90%;
+    height: 50%;
+    object-fit: cover;
+}
+
+.product-name {
+    font-size: 1em;
+    padding: 10px;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Отображение многоточия при переполнении */
+    white-space: nowrap; /* Запрещает перенос текста на новую строку */
+}
+
+.product > *:last-child {
+    flex-grow: 1; /* Убедитесь, что элементы растягиваются по высоте карточки */
+}
+
+.product-price {
+    margin: 5px 0;
+    font-size: 1.2em;
+    color: #333;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+.product a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.required:after {
+    content: none !important;
+}
+
+.search-input {
+    width: 500px; 
+    padding: 5px;
+}
+
+main {
+    margin: 20px; /* отступы для основного контента */
+}
+
+.search-box, #advanced-search {
+    margin-bottom: 20px; /* отступы для поиска */
+}
+
+.product-page .product-detail {
+    display: flex;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.product-page .product-image {
+    max-width: 40%;
+    height: auto;
+    border-radius: 8px;
+    margin-right: 20px;
+}
+
+.product-page .product-info {
+    max-width: 60%;
+}
+
+.product-page .product-name {
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+.product-page .product-description {
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.product-page .product-price {
+    font-size: 24px;
+    color: #D92E15;
+    margin-bottom: 20px;
+}
+
+.product-page .product-brand, .product-page .product-color {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+
+a {
+    text-decoration: none;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #fff;
+    padding: 20px;
+    position: sticky;
+    top: 0;
+    overflow-y: auto; 
+    border: 2px solid #ddd;
+    margin-right: 20px;
+}
+
+.content-wrapper {
+    display: flex;
+}
+
+.category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.category-list li {
+    margin-bottom: 15px;
+}
+
+.category-list a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    display: block;
+    padding: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.category-list a:hover {
+    background-color: #f1f1f1;
+    color: rgb(0, 0, 0);
+}
+
+.sidebar h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.sidebar p {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.product-list {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-list {
+    padding: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.product-list1 {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+
+.product-list h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.product-list-inner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    justify-items: center;
+}
+
+.back-to-home {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.back-to-home .btn {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-to-home .btn:hover {
+    background-color: #0056b3;
+}
+
+.cart-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #f84612;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-button:hover {
+    background-color: #cd2706;
+}
