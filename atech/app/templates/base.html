@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATech</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'home' %}"><h1>ATech</h1></a>
+        </div>
+        <nav>
+            <div class="header-buttons">
+                <a class="cart-button" href="{% url 'view_cart' %}">Корзина</a>
+                <button id="advanced-search-btn">Расширенный поиск</button>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="search1">
+            <div class="search-box">
+                <form method="GET" action="{% url 'search_view' %}">
+                    {% csrf_token %}
+                    {{ search_form.as_p }}
+                    <button type="submit">Искать</button>
+                </form>
+            </div>
+        </div>
+
+        <div id="advanced-search" style="display: none;">
+            <h2>Расширенный поиск</h2>
+            <form method="GET" action="{% url 'advanced_search' %}">
+                {% csrf_token %}
+                {{ advanced_search_form.as_p }}
+                <button class="search-btn" type="submit">Искать</button>
+            </form>
+        </div>
+
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <h2>Категории</h2>
+                <ul class="category-list">
+                    {% for category in categories %}
+                        <li>
+                            <a href="{% url 'category_view' category.id %}">{{ category.category_name }}</a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </aside>
+            <div class="product-list">
+                <div class="product-list-inner">
+                    {% if products %}
+                        {% for product in products %}
+                            <div class="product">
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img src="{{ product.image.url }}" alt="{{ product.product_name }}" class="product-image">
+                                    <div class="product-info">
+                                        <h3 class="product-name">{{ product.product_name }}</h3>
+                                        <h3 class="product-price">${{ product.price|floatformat:2 }}</h3>
+                                        <form method="POST" action="{% url 'add_to_cart' product.id %}">
+                                            {% csrf_token %}
+                                            <button type="submit">Добавить в корзину</button>
+                                        </form>
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
+                    {% else %}
+                        <p>По вашему запросу ничего не найдено.</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#advanced-search-btn').click(function() {
+                $('#advanced-search').toggle();
+            });
+        });
+    </script>    
+</body>
+</html>

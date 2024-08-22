@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'home' %}"><h1>ATech</h1></a>
+        </div>
+    </header>
+
+    <main>
+        <h2>Checkout</h2>
+        <p>Total: ${{ cart.total_price|floatformat:2 }}</p>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">Завершить покупку</button>
+        </form>
+        <a href="{% url 'view_cart' %}" class="btn btn-secondary">Back to Cart</a>
+    </main>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результаты поиска - ATech</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'home' %}"><h1>ATech</h1></a>
+        </div>
+        <button id="advanced-search-btn">Расширенный поиск</button>
+    </header>
+    <main>
+        <div class="search-results">
+            {% if products %}
+                <div class="product-list">
+                    {% for product in products %}
+                        <div class="product">
+                            <a href="{% url 'product_detail' product.id %}">
+                                <img src="{{ product.image.url }}" alt="{{ product.product_name }}" class="product-image">
+                                <h3 class="product-name">{{ product.product_name }}</h3>
+                                <p class="product-price">${{ product.price|floatformat:2 }}</p>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p>По вашему запросу ничего не найдено.</p>
+            {% endif %}
+        </div>
+        <div class="back-to-home">
+            <a href="{% url 'home' %}" class="btn btn-primary">Вернуться на главную</a>
+        </div>
+        
+        <div class="search-options">
+            <a href="{% url 'advanced_search' %}" class="btn btn-secondary">Перейти к расширенному поиску</a>
+
+        </div>
+    </main>
+</body>
+</html>

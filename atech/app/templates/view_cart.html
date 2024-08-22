@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Корзина</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="{% url 'home' %}"><h1>ATech</h1></a>
+        </div>
+    </header>
+
+    <main>
+        <h2>Ваша корзина</h2>
+
+        {% if cart_items %}
+            <ul>
+            {% for item in cart_items %}
+                <li>
+                    {{ item.product.product_name }} x {{ item.quantity }} - {{ item.product.price }} 
+                    <a href="{% url 'remove_from_cart' item.product.id %}">Удалить</a>
+                </li>
+            {% endfor %}
+            </ul>
+            <p>Итого: {{ total_price }}</p>
+        {% else %}
+            <p>Ваша корзина пуста</p>
+        {% endif %}
+        
+        <a href="{% url 'home' %}">Продолжить покупки</a>
+    </main>
+</body>
+</html>
