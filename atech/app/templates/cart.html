@@ -17,14 +17,14 @@
     <main>
         <h2>Корзина</h2>
         {% if cart.items.exists %}
-            <ul>
+            <div>
                 {% for item in cart.items.all %}
-                    <li>
+                    <div>
                         {{ item.product.product_name }} - {{ item.quantity }} x ${{ item.product.price|floatformat:2 }}
                         <a href="{% url 'remove_from_cart' item.id %}">Удалить</a>
-                    </li>
+                    </div>
                 {% endfor %}
-            </ul>
+                </div>
             <p>Total: ${{ cart.total_price|floatformat:2 }}</p>
             <a href="{% url 'checkout' %}" class="btn btn-primary">Оформить</a>
         {% else %}
