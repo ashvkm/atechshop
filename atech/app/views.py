@@ -173,3 +173,6 @@ def remove_from_cart(request, product_id):
         cart_item.delete()
 
     return redirect('view_cart')
+
+def checkout_view(request):
+    return render(request, 'checkout.html')

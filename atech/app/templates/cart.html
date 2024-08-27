@@ -16,16 +16,16 @@
 
     <main>
         <h2>Корзина</h2>
-        {% if cart.items.exists %}
-            <div>
-                {% for item in cart.items.all %}
-                    <div>
+        {% if cart_items %}
+            <ul>
+                {% for item in cart_items %}
+                    <li>
                         {{ item.product.product_name }} - {{ item.quantity }} x ${{ item.product.price|floatformat:2 }}
-                        <a href="{% url 'remove_from_cart' item.id %}">Удалить</a>
-                    </div>
+                        <a href="{% url 'remove_from_cart' item.product.id %}">Удалить</a>
+                    </li>
                 {% endfor %}
-                </div>
-            <p>Total: ${{ cart.total_price|floatformat:2 }}</p>
+            </ul>
+            <p>Total: ${{ total_cart_price|floatformat:2 }}</p>
             <a href="{% url 'checkout' %}" class="btn btn-primary">Оформить</a>
         {% else %}
             <p>Ваша корзина пуста.</p>
