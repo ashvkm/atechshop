@@ -5,23 +5,58 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+    <script>
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Ваш заказ был успешно оформлен!');
+            document.getElementById('checkout-form').submit();
+        }
+    </script>
 </head>
 <body>
     <header>
         <div class="logo">
-            <a href="{% url 'home' %}"><h1>ATech</h1></a>
+           <h1>ATech</h1>
         </div>
     </header>
 
     <main>
-        <h2>Checkout</h2>
-        <p>Total: ${{ cart.total_price|floatformat:2 }}</p>
-        <form method="POST">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-primary">Завершить покупку</button>
-        </form>
-        <a href="{% url 'view_cart' %}" class="btn btn-secondary">Back to Cart</a>
+        <h2>Оформление заказа</h2>
+
+        <div class="checkout-form">
+            <form id="checkout-form" method="POST" onsubmit="handleSubmit(event)">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="email">Электронная почта:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Номер телефона:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+
+                <h3>Ваши товары</h3>
+                <ul>
+                    {% for item in cart_items %}
+                        <li>
+                            {{ item.product.product_name }} - {{ item.quantity }} x ${{ item.product.price|floatformat:2 }}
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <p>Итоговая сумма: ${{ total_cart_price|floatformat:2 }}</p>
+
+                <button type="submit" class="btn btn-primary">Завершить покупку</button>
+            </form>
+        </div>
+
+        <div class="back-to-cart">
+            <a href="{% url 'view_cart' %}" class="btn btn-secondary">Вернуться в корзину</a>
+        </div>
     </main>
 </body>
 </html>
+

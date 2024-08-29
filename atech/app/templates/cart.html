@@ -17,16 +17,31 @@
     <main>
         <h2>Корзина</h2>
         {% if cart_items %}
-            <ul>
+            <ul class="cart-items">
                 {% for item in cart_items %}
-                    <li>
-                        {{ item.product.product_name }} - {{ item.quantity }} x ${{ item.product.price|floatformat:2 }}
-                        <a href="{% url 'remove_from_cart' item.product.id %}">Удалить</a>
+                    <li class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.product_name }}">
+                        </div>
+                        <div class="cart-item-details">
+                            <h3>{{ item.product.product_name }}</h3>
+                            <p>Количество: {{ item.quantity }}</p>
+                            <p>Цена за единицу: ${{ item.product.price|floatformat:2 }}</p>
+                            <p>Общая цена: ${{ item.total_price|floatformat:2 }}</p>
+                            <div class="quantity-controls">
+                                <a href="{% url 'decrease_quantity' item.product.id %}" class="btn-quantity">-</a>
+                                <span>{{ item.quantity }}</span>
+                                <a href="{% url 'increase_quantity' item.product.id %}" class="btn-quantity">+</a>
+                            </div>
+                            <a href="{% url 'remove_from_cart' item.product.id %}" class="btn-remove">Удалить</a>
+                        </div>
                     </li>
                 {% endfor %}
             </ul>
-            <p>Total: ${{ total_cart_price|floatformat:2 }}</p>
-            <a href="{% url 'checkout' %}" class="btn btn-primary">Оформить</a>
+            <div class="cart-summary">
+                <p>Итоговая сумма: <strong>${{ total_cart_price|floatformat:2 }}</strong></p>
+                <a href="{% url 'checkout' %}" class="btn btn-primary">Оформить</a>
+            </div>
         {% else %}
             <p>Ваша корзина пуста.</p>
         {% endif %}

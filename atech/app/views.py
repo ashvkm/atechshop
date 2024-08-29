@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.urls import reverse
 from .models import *
 from .forms import *
 from django.db.models import Q
@@ -134,17 +135,16 @@ def advanced_search_view(request):
 
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
+    cart, created = Cart.objects.get_or_create(user=request.user, is_active=True)
 
-    cart = request.session.get('cart', {})
+    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
+    if not created:
+        cart_item.quantity += 1
+    cart_item.save()
 
-    if str(product_id) in cart:
-        cart[str(product_id)] += 1 
-    else:
-        cart[str(product_id)] = 1
+    cart_item_count = cart.items.count()
 
-    request.session['cart'] = cart
-
-    return redirect('view_cart')
+    return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))
 
 def view_cart(request):
     cart = request.session.get('cart', {})
@@ -165,14 +165,39 @@ def view_cart(request):
 
     return render(request, 'cart.html', context)
 
+from django.shortcuts import render, get_object_or_404, redirect
+from .models import Product
 
-def remove_from_cart(request, product_id):
-    session_key = request.session.session_key
-    if session_key:
-        cart_item = get_object_or_404(Cart, session_key=session_key, product_id=product_id)
-        cart_item.delete()
+def increase_quantity(request, product_id):
+    cart = request.session.get('cart', {})
+
+    if str(product_id) in cart:
+        cart[str(product_id)] += 1
+        request.session['cart'] = cart
 
     return redirect('view_cart')
+
+def decrease_quantity(request, product_id):
+    cart = request.session.get('cart', {})
+
+    if str(product_id) in cart:
+        if cart[str(product_id)] > 1:
+            cart[str(product_id)] -= 1
+        else:
+            del cart[str(product_id)]
+        request.session['cart'] = cart
+
+    return redirect('view_cart')
+
+def remove_from_cart(request, product_id):
+    cart = request.session.get('cart', {})
+
+    if str(product_id) in cart:
+        del cart[str(product_id)]
+        request.session['cart'] = cart
+
+    return redirect('view_cart')
+
 
 def checkout_view(request):
     return render(request, 'checkout.html')
