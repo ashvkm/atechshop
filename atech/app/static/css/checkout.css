@@ -1,10 +1,243 @@
 body {
     font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
 }
 
 h2 {
     text-align: center;
     margin-bottom: 20px;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f4f4f4;
+    border-bottom: 1px solid #ddd;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+/* Стили для поисковой формы */
+.search-box {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.search-box form {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.cart-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.cart-button:hover {
+    background-color: #4056A1;
+}
+
+.search-input {
+    width: 500px; 
+    padding: 5px;
+}
+
+
+.search-box button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background-color: #4056A1;
+}
+
+.search-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #4056A1;
+}
+
+/* Стили для кнопки расширенного поиска */
+#advanced-search-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#advanced-search-btn:hover {
+    background-color: #4056A1;
+}
+
+/* Стили для блока расширенного поиска */
+#advanced-search {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+#advanced-search input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.header-buttons {
+    display: flex;
+    align-items: center;
+}
+
+#advanced-search-btn,
+.cart-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #4056A1;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px; /* Space between buttons */
+}
+
+#advanced-search-btn:hover,
+.cart-button:hover {
+    background-color: #1b3176;
+}
+
+/* Стили для логотипа */
+.logo h1 {
+    margin: 0;
+    font-size: 35px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #333;
+    text-decoration: none;
+    margin-left: 20px;
+}
+
+.logo a {
+    text-decoration: none;
+}
+
+/* Стили для поисковой формы */
+.search-box {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.search-box form {
+    display: flex;
+    align-items: center;
+}
+
+.search-box input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
+}
+
+.search-box button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.search-box button:hover {
+    background-color: #4056A1;
+}
+
+.search-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-btn:hover {
+    background-color: #4056A1;
+}
+
+/* Стили для кнопки расширенного поиска */
+#advanced-search-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#advanced-search-btn:hover {
+    background-color: #4056A1;
+}
+
+/* Стили для блока расширенного поиска */
+#advanced-search {
+    padding: 20px;
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    margin: 10px 0;
+}
+
+#advanced-search input[type="text"] {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1;
+    margin-right: 10px;
 }
 
 .checkout-form {
@@ -53,16 +286,36 @@ ul li {
 }
 
 .btn-primary {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
     background-color: #007bff;
     border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color:#1b3176;
 }
 
 .btn-secondary {
     background-color: #6c757d;
     border: none;
+    transition: background-color 0.3s;
 }
 
-.btn-primary:hover, .btn-secondary:hover {
-    opacity: 0.9;
-    cursor: pointer;
+.btn-secondary:hover {
+    background-color: #333;
+    border: none;
 }
+
+.back-to-cart {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; /* Это можно настроить по вашему усмотрению */
+}
+
+
+

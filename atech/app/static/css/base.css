@@ -4,6 +4,7 @@ body {
     padding: 0;
 }
 
+
 header {
     display: flex;
     align-items: center;
@@ -23,7 +24,7 @@ header {
     padding: 8px 16px;
     font-size: 16px;
     color: #fff;
-    background-color: #f84622;
+    background-color: #4056A1;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -32,13 +33,14 @@ header {
 
 #advanced-search-btn:hover,
 .cart-button:hover {
-    background-color: #cd2706;
+    background-color: #1b3176;
 }
 
 /* Стили для логотипа */
 .logo h1 {
     margin: 0;
     font-size: 35px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     color: #333;
     text-decoration: none;
     margin-left: 20px;
@@ -52,7 +54,6 @@ header {
 .search-box {
     flex: 1;
     margin: 0 20px;
-    padding-top: 15px;
 }
 
 .search-box form {
@@ -73,21 +74,21 @@ header {
     padding: 8px 16px;
     font-size: 16px;
     color: #fff;
-    background-color: #f84622;
+    background-color: #007bff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .search-box button:hover {
-    background-color: #cd2706;
+    background-color: #4056A1;
 }
 
 .search-btn {
     padding: 8px 16px;
     font-size: 16px;
     color: #fff;
-    background-color: #f84622;
+    background-color: #007bff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -95,7 +96,7 @@ header {
 }
 
 .search-btn:hover {
-    background-color: #cd2706;
+    background-color: #4056A1;
 }
 
 /* Стили для кнопки расширенного поиска */
@@ -103,14 +104,14 @@ header {
     padding: 8px 16px;
     font-size: 16px;
     color: #fff;
-    background-color: #f84622;
+    background-color: #007bff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 #advanced-search-btn:hover {
-    background-color: #cd2706;
+    background-color: #4056A1;
 }
 
 /* Стили для блока расширенного поиска */
@@ -196,9 +197,6 @@ main {
     margin: 20px; /* отступы для основного контента */
 }
 
-.search-box, #advanced-search {
-    margin-bottom: 20px; /* отступы для поиска */
-}
 
 .product-page .product-detail {
     display: flex;
@@ -345,21 +343,21 @@ a {
 }
 
 .back-to-home .btn:hover {
-    background-color: #0056b3;
+    background-color: #4056A1;
 }
 
 .cart-button {
     padding: 8px 16px;
     font-size: 16px;
     color: #fff;
-    background-color: #f84612;
+    background-color: #007bff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
 .cart-button:hover {
-    background-color: #cd2706;
+    background-color: #4056A1;
 }
 
 .cart-items {
@@ -370,8 +368,8 @@ a {
 .cart-item {
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #ddd;
-    padding: 10px 0;
+    border-bottom: 2px solid #ddd;
+    padding: 20px 0;
 }
 
 .cart-item-image img {
@@ -389,29 +387,72 @@ a {
 }
 
 .cart-summary {
-    text-align: right;
+    display: flex; /* Используем Flexbox для выравнивания кнопок */
+    justify-content: space-between; /* Равномерное распределение кнопок */
+    align-items: center; /* Выравнивание кнопок по вертикали */
     margin-top: 20px;
 }
 
+.cart-summary .btn-primary {
+    margin-right: 10px; /* Отступ между кнопками */
+}
+
 .btn {
-    display: inline-block;
-    padding: 10px 20px;
+    padding: 8px 16px;
+    font-size: 16px;
     color: #fff;
     background-color: #007bff;
-    text-decoration: none;
-    border-radius: 5px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #1b3176;
 }
 
 .btn-secondary {
-    background-color: #6c757d;
+    background-color: #007bff;
 }
 
+
 .btn-remove {
-    color: #dc3545;
-    text-decoration: none;
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #dc3545;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
 .btn-remove:hover {
-    text-decoration: underline;
+    background-color: #bc1728;
 }
 
+.quantity-controls {
+    margin-bottom: 13px;
+}
+
+.cart-product-button {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.cart-product-button:hover {
+    background-color: #4056A1;
+}
+
+h2 {
+    color: #333;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 30px;
+}

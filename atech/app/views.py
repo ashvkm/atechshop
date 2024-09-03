@@ -85,11 +85,22 @@ def category_view(request, category_id):
 
 def product_detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-    return render(request, 'product_detail.html', {'product': product})
+    search_form = SearchForm(request.GET) 
+    advanced_search_form = AdvancedSearchForm(request.GET)
+    categories = Category.objects.all()
+    return render(request, 'product_detail.html', {
+        'product': product,
+        'search_form': search_form,
+        'advanced_search_form': advanced_search_form,
+        'categories': categories,
+    })
 
 def search_view(request):
     form = SearchForm(request.GET)
     products = Product.objects.none()
+    search_form = SearchForm(request.GET)
+    advanced_search_form = AdvancedSearchForm(request.GET)
+    categories = Category.objects.all()
 
     if form.is_valid():
         product_name = form.cleaned_data.get('product_name')
@@ -99,11 +110,15 @@ def search_view(request):
     return render(request, 'search_results.html', {
         'products': products,
         'form': form,
+        'search_form': search_form,
+        'advanced_search_form': advanced_search_form,
+        'categories': categories,
     })
 
 def advanced_search_view(request):
     advanced_search_form = AdvancedSearchForm(request.GET)
     products = Product.objects.all()
+    categories = Category.objects.all() 
 
 
     if advanced_search_form.is_valid():
@@ -131,22 +146,30 @@ def advanced_search_view(request):
                 'products': products,
                 'search_form': SearchForm(), 
                 'advanced_search_form': advanced_search_form,
+                'categories': categories,
             })
 
 def add_to_cart(request, product_id):
     product = get_object_or_404(Product, id=product_id)
-    cart, created = Cart.objects.get_or_create(user=request.user, is_active=True)
 
-    cart_item, created = CartItem.objects.get_or_create(cart=cart, product=product)
-    if not created:
-        cart_item.quantity += 1
-    cart_item.save()
+    cart = request.session.get('cart', {})
 
-    cart_item_count = cart.items.count()
+    if str(product_id) in cart:
+        cart[str(product_id)] += 1 
+    else:
+        cart[str(product_id)] = 1
+
+    request.session['cart'] = cart
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', reverse('home')))
 
+
 def view_cart(request):
+    search_form = SearchForm(request.GET)
+    advanced_search_form = AdvancedSearchForm(request.GET)
+    
+    categories = Category.objects.all()
+
     cart = request.session.get('cart', {})
     products = Product.objects.filter(id__in=cart.keys())
     cart_items = []
@@ -160,13 +183,15 @@ def view_cart(request):
 
     context = {
         'cart_items': cart_items,
-        'total_cart_price': sum(item['total_price'] for item in cart_items)
+        'total_cart_price': sum(item['total_price'] for item in cart_items),
+        'search_form': search_form,
+        'advanced_search_form': advanced_search_form,
+        'categories': categories,
     }
-
+    
     return render(request, 'cart.html', context)
 
-from django.shortcuts import render, get_object_or_404, redirect
-from .models import Product
+
 
 def increase_quantity(request, product_id):
     cart = request.session.get('cart', {})
@@ -200,4 +225,17 @@ def remove_from_cart(request, product_id):
 
 
 def checkout_view(request):
-    return render(request, 'checkout.html')
+    search_form = SearchForm(request.GET)
+    advanced_search_form = AdvancedSearchForm(request.GET)
+
+    cart_items = request.session.get('cart_items', []) 
+    total_cart_price = sum(item['price'] * item['quantity'] for item in cart_items)
+
+    context = {
+        'search_form': search_form,
+        'advanced_search_form': advanced_search_form,
+        'cart_items': cart_items,
+        'total_cart_price': total_cart_price,
+    }
+
+    return render(request, 'checkout.html', context)

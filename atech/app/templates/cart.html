@@ -12,9 +12,33 @@
         <div class="logo">
             <a href="{% url 'home' %}"><h1>ATech</h1></a>
         </div>
+        <div class="search1">
+            <div class="search-box">
+                <form method="GET" action="{% url 'search_view' %}">
+                    {% csrf_token %}
+                    {{ search_form.as_p }}
+                    <button type="submit">Искать</button>
+                </form>
+            </div>
+        </div>
+        <nav>
+            <div class="header-buttons">
+                <a class="cart-button" href="{% url 'view_cart' %}">Корзина</a>
+                <button id="advanced-search-btn">Расширенный поиск</button>
+            </div>
+        </nav>
     </header>
 
     <main>
+        <div id="advanced-search" style="display: none;">
+            <h2>Расширенный поиск</h2>
+            <form method="GET" action="{% url 'advanced_search' %}">
+                {% csrf_token %}
+                {{ advanced_search_form.as_p }}
+                <button class="search-btn" type="submit">Искать</button>
+            </form>
+        </div>
+        
         <h2>Корзина</h2>
         {% if cart_items %}
             <ul class="cart-items">
@@ -40,12 +64,15 @@
             </ul>
             <div class="cart-summary">
                 <p>Итоговая сумма: <strong>${{ total_cart_price|floatformat:2 }}</strong></p>
-                <a href="{% url 'checkout' %}" class="btn btn-primary">Оформить</a>
+                <div>
+                    <a href="{% url 'checkout' %}" class="btn btn-primary">Оформить</a>
+                    <a href="{% url 'home' %}" class="btn btn-secondary">Продолжить покупки</a>
+                </div>
             </div>
         {% else %}
             <p>Ваша корзина пуста.</p>
+            <a href="{% url 'home' %}" class="btn btn-secondary">Продолжить покупки</a>
         {% endif %}
-        <a href="{% url 'home' %}" class="btn btn-secondary">Продолжить покупки</a>
     </main>
 </body>
 </html>
