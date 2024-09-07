@@ -49,24 +49,28 @@ class Cart(models.Model):
     def __str__(self):
         return f'{self.product.product_name} x {self.quantity}'
 
+
 class Order(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    order_date = models.DateTimeField()
-    quantity = models.DecimalField(max_digits=10, decimal_places=2)
-    status = models.CharField(max_length=45)
-    address = models.CharField(max_length=255)
+    email = models.EmailField(max_length=254, default='example@example.com') 
+    phone = models.CharField(max_length=15, default='1234567890')
+    order_date = models.DateTimeField(auto_now_add=True)
+    quantity = models.PositiveIntegerField()
+    status = models.CharField(max_length=50)
+    address = models.TextField()
+    total_price = models.DecimalField(max_digits=10, decimal_places=2, default=0)
 
     def __str__(self):
-        return f'Order {self.id} by {self.user.username}'
+        return f"Order {self.id} - {self.email}"
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order, on_delete=models.CASCADE)
+    order = models.ForeignKey(Order, related_name='items', on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    quantity = models.PositiveIntegerField()
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f'Item {self.product.product_name} in order {self.order.id}'
+        return f"{self.quantity} x {self.product.product_name}"
+
 
 class Review(models.Model):
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -81,3 +85,4 @@ class Review(models.Model):
     def clean(self):
         if self.rating < 1 or self.rating > 5:
             raise ValidationError('Rating must be between 1 and 5')
+

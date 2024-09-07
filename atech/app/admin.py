@@ -34,10 +34,7 @@ class ProductAdmin(admin.ModelAdmin):
 
 @admin.register(Order)
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('user', 'order_date', 'quantity', 'status', 'address')
-    search_fields = ('user__username', 'status')
-    list_filter = ('status',)
-    ordering = ('-order_date',)
+    list_display = ['id', 'email', 'phone', 'order_date', 'status', 'total_price']
 
 @admin.register(OrderItem)
 class OrderItemAdmin(admin.ModelAdmin):
@@ -52,4 +49,10 @@ class ReviewAdmin(admin.ModelAdmin):
     search_fields = ('product__product_name', 'user__username')
     list_filter = ('rating', 'product')
     ordering = ('-review_date',)
+
+@admin.register(Cart)
+class CartAdmin(admin.ModelAdmin):
+    list_display = ('session_key', 'product', 'quantity')
+    search_fields = ('session_key', 'product__product_name')
+    ordering = ('session_key',)
 
