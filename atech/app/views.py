@@ -277,3 +277,15 @@ def checkout_view(request):
 
 def order_confirmation(request):
     return render(request, 'order_confirmation.html') 
+
+
+def profile_view(request):
+    user_email = request.user.email
+    user_orders = Order.objects.filter(email=user_email)
+    recent_orders = user_orders.order_by('-order_date')[:5]
+
+    context = {
+        'user_orders': user_orders,
+        'recent_orders': recent_orders,
+    }
+    return render(request, 'profile.html', context)

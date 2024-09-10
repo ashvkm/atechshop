@@ -22,7 +22,6 @@ header {
     text-decoration: none;
 }
 
-/* Стили для поисковой формы */
 .search-box {
     flex: 1;
     margin: 0 20px;
@@ -91,7 +90,7 @@ header {
     background-color: #4056A1;
 }
 
-/* Стили для кнопки расширенного поиска */
+
 #advanced-search-btn {
     padding: 8px 16px;
     font-size: 16px;
@@ -106,7 +105,7 @@ header {
     background-color: #4056A1;
 }
 
-/* Стили для блока расширенного поиска */
+
 #advanced-search {
     padding: 20px;
     background-color: #f4f4f4;
@@ -137,7 +136,7 @@ header {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin-left: 10px; /* Space between buttons */
+    margin-left: 10px;
 }
 
 #advanced-search-btn:hover,
@@ -145,7 +144,7 @@ header {
     background-color: #1b3176;
 }
 
-/* Стили для логотипа */
+
 .logo h1 {
     margin: 0;
     font-size: 35px;
@@ -159,7 +158,6 @@ header {
     text-decoration: none;
 }
 
-/* Стили для поисковой формы */
 .search-box {
     flex: 1;
     margin: 0 20px;
@@ -208,7 +206,7 @@ header {
     background-color: #4056A1;
 }
 
-/* Стили для кнопки расширенного поиска */
+
 #advanced-search-btn {
     padding: 8px 16px;
     font-size: 16px;
@@ -223,7 +221,6 @@ header {
     background-color: #4056A1;
 }
 
-/* Стили для блока расширенного поиска */
 #advanced-search {
     padding: 20px;
     background-color: #f4f4f4;
@@ -314,7 +311,7 @@ ul li {
 .back-to-cart {
     display: flex;
     justify-content: center;
-    margin-top: 20px; /* Это можно настроить по вашему усмотрению */
+    margin-top: 20px;
 }
 
 
